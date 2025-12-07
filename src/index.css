@@ -7,6 +7,9 @@
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
+  /* Width for the right sidebar; other styles use this to reserve space */
+  --sidebar-width: 280px;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -64,5 +67,27 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+
+.appShell {
+  display: flex;
+  flex-direction: row-reverse; /* puts sidebar on the RIGHT */
+  min-height: 100dvh;
+}
+
+.mainContent {
+  flex: 1 1 auto;
+  min-width: 0;
+  /* Reserve space on the right so the fixed sidebar doesn't overlap content */
+  margin-right: var(--sidebar-width);
+  transition: margin 180ms ease;
+}
+
+/* On small screens the sidebar becomes full-width and should not reserve space */
+@media (max-width: 768px) {
+  .mainContent {
+    margin-right: 0;
   }
 }

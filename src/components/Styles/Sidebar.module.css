@@ -1,0 +1,208 @@
+/* Sidebar.module.css */
+
+/* ===== Root Sidebar ===== */
+.sidebar {
+  /* Your base rules */
+  display: flex;
+  padding: 24px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+
+  /* Make the sidebar fixed to the right on larger screens */
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+
+  /* Fill screen height */
+  height: 100dvh;
+  min-height: 100vh;
+
+  /* Size */
+  width: var(--sidebar-width, 280px); /* use global var if available */
+  box-sizing: border-box;
+
+  /* Look & feel (tweak to match your design) */
+  background: #1a0f4a;
+  color: #ffffff;
+}
+
+/* ===== Top container (menus) ===== */
+.topArea {
+  width: 100%;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding-bottom: 8px; /* breathing room before account area */
+}
+
+/* ===== Sections (group of items) ===== */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* between each item */
+  width: 100%;
+}
+
+/* ===== Item button ===== */
+.item {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: inherit;
+
+  display: flex;
+  align-items: center;
+
+  /* KEY: icon on the right, text on the left */
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 12px;
+
+  padding: 10px 12px;
+  border-radius: 12px;
+
+  cursor: pointer;
+  text-align: right;
+
+  transition: background 120ms ease, opacity 120ms ease;
+}
+
+.item:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.active {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* ===== Text ===== */
+.itemText {
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 500;
+  opacity: 0.95;
+
+  /* Prevent weird overflow */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ===== Icon ===== */
+.icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  flex: 0 0 22px;
+  opacity: 0.95;
+}
+
+.item:hover .icon {
+  opacity: 1;
+}
+
+/* ===== Divider between main and bottom groups ===== */
+.divider {
+  height: 1px;
+  width: 100%;
+  margin: 16px 0;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ===== Account area ===== */
+.account {
+  /* Your rules */
+  display: flex;
+  padding: 24px;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+
+  /* Visual separation */
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+
+  /* Make the account block feel full-width inside a padded sidebar */
+  margin: 0 -24px -24px -24px;
+  box-sizing: border-box;
+}
+
+/* Account text block */
+.accountText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.accountName {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.accountEmail {
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+/* Down chevron */
+.accountChevron {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* ===== Optional: Smooth scrollbar look (safe defaults) ===== */
+.topArea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.topArea::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+}
+
+.topArea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1200px) {
+  .sidebar {
+    width: 260px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 240px;
+  }
+
+  .itemText {
+    font-size: 13px;
+  }
+}
+
+/* If you want to collapse sidebar on small screens */
+@media (max-width: 768px) {
+  .sidebar {
+    /* On small screens the sidebar should be part of the flow again */
+    position: static;
+    right: auto;
+    top: auto;
+    z-index: auto;
+    width: 100%;
+    height: auto;
+    min-height: auto;
+    flex-direction: column;
+  }
+
+  .topArea {
+    max-height: 60vh;
+  }
+
+  .account {
+    margin: 0 -24px 0 -24px;
+  }
+}
+
+
